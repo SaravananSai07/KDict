@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="kdict"
-        android:name="${applicationName}"
+        android:label="KDict"
+        android:name="KDict"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -29,5 +29,34 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <receiver
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationActivity"
+            android:exported="false" />
+
+        <service
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationService"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.dexterous.flutterlocalnotifications.SCHEDULE_NOTIFICATION" />
+                <action android:name="com.dexterous.flutterlocalnotifications.SHOW_NOTIFICATION" />
+                <action android:name="com.dexterous.flutterlocalnotifications.CANCEL_NOTIFICATION" />
+                <action android:name="com.dexterous.flutterlocalnotifications.RESCHEDULE_NOTIFICATION" />
+            </intent-filter>
+        </receiver>
+
     </application>
 </manifest>
